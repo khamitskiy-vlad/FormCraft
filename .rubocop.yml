@@ -1,0 +1,10 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2.2
+
+Style/Documentation:
+  Enabled: false
+
+Naming/MethodName:
+  Enabled: false
+  
