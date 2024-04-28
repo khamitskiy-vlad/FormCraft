@@ -7,37 +7,30 @@ module HexletCode
       opening_tag = opening_tag(name)
       attributes = attributes(options)
       pair_body = yield if block_given?
-      
-      html_form = [] << tag_with_attributes_joiner(opening_tag, attributes)
 
-      if paired_tags.include?(name)
-        html_form << pair_body << "</#{name}>"
-        html_form.join
-      else
-        html_form.join
-      end
+      html_form = [] << tag_with_attributes_clouser(opening_tag, attributes)
+
+      html_form << pair_body << "</#{name}>" if paired_tags.include?(name)
+
+      html_form.join
     end
 
-    def self.tag_with_attributes_joiner(open, attr)
+    def self.tag_with_attributes_clouser(open, attr)
       array = [] << open
-      if attr.empty?
-        array
-      else
-        array << " #{attr}"
-      end
-      array << ">"
-    end 
+      array << " #{attr}" unless attr.empty?
+      array << '>'
+    end
 
     def self.opening_tag(name)
-      string = "<#{name}"
+      "<#{name}"
     end
-    
+
     def self.attributes(options)
-      array = []
-      options.each do |key, value|
-        array << "#{key}=\"#{value}\""
+      attr = []
+      options.map do |key, value|
+        attr << "#{key}=\"#{value}\""
       end
-      array.join(" ")
+      attr.join(' ')
     end
   end
 end
