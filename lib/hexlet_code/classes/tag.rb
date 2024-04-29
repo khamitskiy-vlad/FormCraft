@@ -7,7 +7,7 @@ module HexletCode
       pair_body = yield if block_given?
 
       html_form = [].push tag_with(opening_tag(name), attributes(options))
-      html_form.push pair_body, "</#{name}>" if paired_tags.include?(name)
+      html_form.push pair_body, "</#{name}>" if paired_tags.include? name
       html_form.join
     end
 
@@ -24,7 +24,7 @@ module HexletCode
     def self.attributes(options)
       options.map do |key, value|
         "#{key}=\"#{value}\""
-      end.join(' ')
+      end.join ' '
     end
   end
 end
