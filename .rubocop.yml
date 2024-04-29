@@ -19,3 +19,6 @@ Style/ExpandPathArguments:
 
 Style/SpecialGlobalVars:
     Enabled: false
+
+Style/SymbolProc:
+    Enabled: false
