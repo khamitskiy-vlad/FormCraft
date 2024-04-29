@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'bundler/setup'
+Bundler.require
+
+lib = File.expand_path('../../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
 require 'hexlet_code'
 
 require 'minitest/autorun'
