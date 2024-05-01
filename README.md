@@ -1,15 +1,14 @@
 # HexletCode
 [![CI](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/ci.yml/badge.svg)](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/ci.yml) [![hexlet-check](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/hexlet-check.yml)
 
-TODO: Delete this and the text below, and describe your gem
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet_code`. To experiment with that code, run `bin/console` for an interactive prompt.
+**HexletCode** - DSL form generator for create light HTML forms.
+
+This library takes care about tasks that usually require writing a lot of routine code, such as error handling. It is inspired by [Simple Form](https://github.com/heartcombo/simple_form) for Rails, but conceptually simpler.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
+TODO: Install the gem and add to the application's Gemfile by executing:
 
     $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
 
@@ -18,8 +17,51 @@ If bundler is not being used to manage dependencies, install the gem by executin
     $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
 
 ## Usage
+Сreate the necessary struct, class object and set attributes.
 
-TODO: Write usage instructions here
+For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the `.input()` method options. If you haven't set values for the struct key, or haven't set `url:`, generator will add them by default:
+
+```ruby
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new
+
+HexletCode.form_for user do |f|
+  f.input :name
+end
+
+# <form action="#" method="post">
+#   <input name="name" type="text" value="name">
+# </form>
+```
+
+Option `as:` with `:text` will generate a `<textarea>` form. The default row and col values ​​are 40 and 20. But you can set them yourself. Let's look at the full usage of the generator:
+
+```ruby
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+
+HexletCode.form_for user, url: '/users' do |f|
+  f.input :job, as: :text
+  f.input :job, as: :text, rows: 50, cols: 50
+  f.input :name, class: 'user-input'
+end
+
+# <form action="/users" method="post">
+#   <textarea rows="40" cols="20" name="job">hexlet</textarea>
+#   <textarea rows="50" cols="50" name="job">hexlet</textarea>
+#   <input name="name" type="text" value="rob" class="user-input">
+# </form>
+```
+
+If you try to specify a key that is not in the struct, you will receive an error:
+
+```ruby
+HexletCode.form_for user do |f|
+  f.input :age
+end
+
+# RuntimeError: Undefined tag 'age' for {:name=>"rob", :job=>"hexlet", :gender=>"m"}
+```
 
 ## Development
 
