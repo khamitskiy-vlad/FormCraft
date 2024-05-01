@@ -28,3 +28,6 @@ Layout/BlockAlignment:
 
 Metrics/MethodLength:
     Max: 15
+
+Gemspec/DevelopmentDependencies:
+    Enabled: false
