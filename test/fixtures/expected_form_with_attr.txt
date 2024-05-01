@@ -1,0 +1,4 @@
+<form action="/users" method="post">
+  <textarea rows="50" cols="50" name="job">hexlet</textarea>
+  <input name="name" type="text" value="rob" class="user-input">
+</form>
