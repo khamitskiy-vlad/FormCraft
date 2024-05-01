@@ -6,8 +6,8 @@ module HexletCode
 
     def self.build(name, options = {})
       pair_body = yield if block_given?
-
       html_form = [].push open_tag_with(name, attributes(options))
+      html_form.push "\n" if name == 'form'
       html_form.push pair_body, "</#{name}>" unless UNPAIRED.include? name
       html_form.join
     end
