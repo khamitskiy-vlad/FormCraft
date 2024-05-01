@@ -9,12 +9,6 @@ Naming/MethodName:
   Enabled: false
 
 Style/ExpandPathArguments:
-  Enabled: false
-
-Style/SpecialGlobalVars:
-    Enabled: false
-
-Style/ExpandPathArguments:
     Enabled: false
 
 Style/SpecialGlobalVars:
@@ -22,3 +16,15 @@ Style/SpecialGlobalVars:
 
 Style/SymbolProc:
     Enabled: false
+
+Style/Semicolon:
+    Enabled: false
+
+Layout/ExtraSpacing:
+    Enabled: false
+
+Layout/BlockAlignment:
+    Enabled: false
+
+Metrics/MethodLength:
+    Max: 15
