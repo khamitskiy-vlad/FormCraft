@@ -8,18 +8,19 @@ This library takes care about tasks that usually require writing a lot of routin
 
 ## Installation
 
-TODO: Install the gem and add to the application's Gemfile by executing:
+Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add hexlet_code --git 'https://github.com/khamitskiy-vlad/HexletCode.git'
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install specific_install 
+    $ gem specific_install -l 'https://github.com/khamitskiy-vlad/HexletCode.git'
 
 ## Usage
 Сreate the necessary struct, class object and set attributes.
 
-For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the `.input()` method options. If you haven't set values for the struct key, or haven't set `url:`, generator will add them by default:
+For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the `.input()` method options. After call the `.submit()`. If you haven't set values for the struct keys, or haven't set destination `url:`, generator will add them by default:
 
 ```ruby
 User = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -27,10 +28,13 @@ user = User.new
 
 HexletCode.form_for user do |f|
   f.input :name
+  f.submit
 end
 
 # <form action="#" method="post">
-#   <input name="name" type="text" value="name">
+#   <label for="name">Name</label>
+#   <input name="name" type="text" value="">
+#   <input type="submit" value="Save">
 # </form>
 ```
 
@@ -44,12 +48,17 @@ HexletCode.form_for user, url: '/users' do |f|
   f.input :job, as: :text
   f.input :job, as: :text, rows: 50, cols: 50
   f.input :name, class: 'user-input'
+  f.submit 'Wow'
 end
 
 # <form action="/users" method="post">
+#   <label for="job">Job</label>
 #   <textarea rows="40" cols="20" name="job">hexlet</textarea>
+#   <label for="job">Job</label>
 #   <textarea rows="50" cols="50" name="job">hexlet</textarea>
+#   <label for="name">Name</label>
 #   <input name="name" type="text" value="rob" class="user-input">
+#   <input type="submit" value="Wow">
 # </form>
 ```
 
@@ -60,7 +69,7 @@ HexletCode.form_for user do |f|
   f.input :age
 end
 
-# RuntimeError: Undefined tag 'age' for {:name=>"rob", :job=>"hexlet", :gender=>"m"}
+# `input': Undefined tag 'age' for {:name=>"rob", :job=>"hexlet", :gender=>"m"} (RuntimeError)
 ```
 
 ## Development
@@ -71,7 +80,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet_code. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/khamitskiy-vlad/hexlet_code. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/khamitskiy-vlad/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -79,4 +88,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the HexletCode project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the HexletCode project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/khamitskiy-vlad/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
