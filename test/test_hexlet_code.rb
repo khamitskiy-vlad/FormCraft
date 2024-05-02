@@ -13,11 +13,13 @@ class TestHexletCode < Minitest::Test
     @form_with_attr    = HexletCode.form_for @user, url: '/users' do |f|
                            f.input :job, as: :text, rows: 50, cols: 50
                            f.input :name, class: 'user-input'
+                           f.submit 'Wow'
                          end
 
     @form_without_attr = HexletCode.form_for @user do |f|
                            f.input :job, as: :text
                            f.input :name
+                           f.submit
                          end
 
     @expected_form_with_attr = File.readlines 'test/fixtures/expected_form_with_attr.txt'
