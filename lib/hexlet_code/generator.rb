@@ -13,24 +13,31 @@ module HexletCode
       instance_eval(&)
     end
 
+    def submit(value = 'Save')
+      @data.push("  #{input_form('', value, 'submit')}\n".gsub(' name="" ', ' '))
+    end
+
     def input(tag, options = {})
       raise "Undefined tag '#{tag}' for #{@struct}" unless @struct.key?(tag)
 
-      # Gives a default value for tag, if value == nil (name: nil => name: 'name')
-      @struct[tag] = tag.to_s if @struct[tag].nil?
+      @data.push("  #{label_for(tag)}\n")
 
       case options[:as]
       when :text
         @data.push("  #{textarea_form(tag, @struct[tag], **options)}\n")
       else
-        @data.push("  #{input_form(tag, @struct[tag], **options)}\n")
+        @data.push("  #{input_form(tag, @struct[tag], 'text', **options)}\n")
       end
     end
 
     private
 
-    def input_form(tag, value, **)
-      HexletCode::Tag.build('input', "#{tag}": tag.to_s, type: 'text', value: value.to_s, **)
+    def label_for(tag)
+      HexletCode::Tag.build('label', for: tag.to_s) { tag.capitalize }
+    end
+
+    def input_form(tag, value, type, **)
+      HexletCode::Tag.build('input', name: tag.to_s, type: type.to_s, value: value.to_s, **)
     end
 
     def textarea_form(tag, value, **options)
