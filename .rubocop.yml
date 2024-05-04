@@ -31,3 +31,6 @@ Metrics/MethodLength:
 
 Gemspec/DevelopmentDependencies:
     Enabled: false
+
+Layout/LineLength:
+    Max: 135
