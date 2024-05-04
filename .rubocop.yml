@@ -17,20 +17,8 @@ Style/SpecialGlobalVars:
 Style/SymbolProc:
     Enabled: false
 
-Style/Semicolon:
-    Enabled: false
-
-Layout/ExtraSpacing:
-    Enabled: false
-
-Layout/BlockAlignment:
-    Enabled: false
-
 Metrics/MethodLength:
     Max: 15
 
 Gemspec/DevelopmentDependencies:
     Enabled: false
-
-Layout/LineLength:
-    Max: 135
