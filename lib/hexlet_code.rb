@@ -12,6 +12,6 @@ module HexletCode
 
   def self.form_for(struct, attr = {}, &)
     form = Generator.new(struct, **attr, &)
-    HexletCode::Tag.build('form', **form.attr, method: 'post') { form.data }
+    HexletCode::Tag.build('form', **form.attr) { form.data }
   end
 end
