@@ -44,14 +44,14 @@ Option `as:` with `:text` will generate a `<textarea>` form. The default row and
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-HexletCode.form_for user, url: '/users' do |f|
+HexletCode.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |f|
   f.input :job, as: :text
   f.input :job, as: :text, rows: 50, cols: 50
   f.input :name, class: 'user-input'
   f.submit 'Wow'
 end
 
-# <form action="/users" method="post">
+# <form action="/users" method="get" class="hexlet-code">
 #   <label for="job">Job</label>
 #   <textarea rows="40" cols="20" name="job">hexlet</textarea>
 #   <label for="job">Job</label>
