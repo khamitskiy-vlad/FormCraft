@@ -8,12 +8,6 @@ Style/Documentation:
 Naming/MethodName:
   Enabled: false
 
-Style/ExpandPathArguments:
-    Enabled: false
-
-Style/SpecialGlobalVars:
-    Enabled: false
-
 Style/SymbolProc:
     Enabled: false
 
