@@ -10,17 +10,17 @@ class TestHexletCode < Minitest::Test
     @user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
     # The order is important to make sure that method with attr does not overwrite DEF_ATTR const
-    @form_with_attr    = HexletCode.form_for @user, url: '/profile', method: :get, class: 'hexlet-form' do |f|
-                           f.input :job, as: :text, rows: 50, cols: 50
-                           f.input :name, class: 'user-input'
-                           f.submit 'Wow'
-                         end
+    @form_with_attr = HexletCode.form_for @user, url: '/profile', method: :get, class: 'hexlet-form' do |f|
+      f.input :job, as: :text, rows: 50, cols: 50
+      f.input :name, class: 'user-input'
+      f.submit 'Wow'
+    end
 
     @form_without_attr = HexletCode.form_for @user do |f|
-                           f.input :job, as: :text
-                           f.input :name
-                           f.submit
-                         end
+      f.input :job, as: :text
+      f.input :name
+      f.submit
+    end
 
     @expected_form_with_attr = File.readlines 'test/fixtures/expected_form_with_attr.txt'
 
@@ -42,6 +42,9 @@ class TestHexletCode < Minitest::Test
       end
     end
 
-    assert_equal "undefined method `age' for #<struct TestHexletCode::User name=\"rob\", job=\"hexlet\", gender=\"m\">", error.message
+    assert_equal(
+      "undefined method `age' for #<struct TestHexletCode::User name=\"rob\", job=\"hexlet\", gender=\"m\">",
+      error.message
+    )
   end
 end
