@@ -1,4 +1,4 @@
-<form action="/users" method="post">
+<form action="/profile" method="get" class="hexlet-form">
   <label for="job">Job</label>
   <textarea rows="50" cols="50" name="job">hexlet</textarea>
   <label for="name">Name</label>
