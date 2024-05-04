@@ -4,12 +4,13 @@ module HexletCode
   class Generator
     attr_reader :data, :attr
 
-    DEF_ATTR = { action: '#' }.freeze
+    DEF_ATTR = { action: '#', method: 'post' }.freeze
 
-    def initialize(struct, **attr, &)
-      @struct = {}; struct.each_pair { |name, value| @struct[name.to_sym] = value }
-      @attr = DEF_ATTR.dup; attr.map { |_k, v| @attr[:action] = v if attr.key?(:url) }
+    def initialize(struct, attr = {}, &)
+      @struct = struct
+      @attr = DEF_ATTR.dup
       @data = []
+      attr_setter(@attr, attr) if attr.any?
       instance_eval(&)
     end
 
@@ -18,8 +19,7 @@ module HexletCode
     end
 
     def input(tag, options = {})
-      raise "Undefined tag '#{tag}' for #{@struct}" unless @struct.key?(tag)
-
+      @struct.public_send(tag)
       @data.push("  #{label_for(tag)}\n")
 
       case options[:as]
@@ -32,20 +32,25 @@ module HexletCode
 
     private
 
+    def attr_setter(instance, attr)
+      attr[:action] = attr.delete(:url)
+      attr.map { |k, v| instance[k] = v }
+    end
+
     def label_for(tag)
-      HexletCode::Tag.build('label', for: tag.to_s) { tag.capitalize }
+      HexletCode::Tag.build('label', for: tag) { tag.capitalize }
     end
 
     def input_form(tag, value, type, **)
-      HexletCode::Tag.build('input', name: tag.to_s, type: type.to_s, value: value.to_s, **)
+      HexletCode::Tag.build('input', name: tag, type:, value:, **)
     end
 
-    def textarea_form(tag, value, **options)
+    def textarea_form(tag, value, options = {})
       options[:rows] = '40' if options[:rows].nil?
       options[:cols] = '20' if options[:cols].nil?
       options.delete(:as)
 
-      HexletCode::Tag.build('textarea', **options, name: tag.to_s) { value }
+      HexletCode::Tag.build('textarea', **options, name: tag) { value }
     end
   end
 end
