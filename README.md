@@ -69,7 +69,7 @@ HexletCode.form_for user do |f|
   f.input :age
 end
 
-# `input': Undefined tag 'age' for {:name=>"rob", :job=>"hexlet", :gender=>"m"} (RuntimeError)
+# `public_send': undefined method `age' for #<struct User name="rob", job="hexlet", gender="m"> (NoMethodError)
 ```
 
 ## Development
