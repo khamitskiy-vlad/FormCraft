@@ -8,31 +8,28 @@ class TestHexletCode < Minitest::Test
 
   def setup
     @user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+  end
 
-    # The order is important to make sure that method with attr does not overwrite DEF_ATTR const
-    @form_with_attr = HexletCode.form_for @user, url: '/profile', method: :get, class: 'hexlet-form' do |f|
+  def test_form_creation_for_user_with_attr
+    expected_form = load_fixture('expected_form_with_attr')
+    form = HexletCode.form_for @user, url: '/profile', method: :get, class: 'hexlet-form' do |f|
       f.input :job, as: :text, rows: 50, cols: 50
       f.input :name, class: 'user-input'
       f.submit 'Wow'
     end
 
-    @form_without_attr = HexletCode.form_for @user do |f|
+    assert { expected_form == form }
+  end
+
+  def test_form_creation_for_user_without_attr
+    expected_form = load_fixture('expected_form_without_attr')
+    form = HexletCode.form_for @user do |f|
       f.input :job, as: :text
       f.input :name
       f.submit
     end
 
-    @expected_form_with_attr = File.readlines 'test/fixtures/expected_form_with_attr.txt'
-
-    @expected_form_without_attr = File.readlines 'test/fixtures/expected_form_without_attr.txt'
-  end
-
-  def test_form_creation_for_user_with_attr
-    assert { @expected_form_with_attr.join == @form_with_attr }
-  end
-
-  def test_form_creation_for_user_without_attr
-    assert { @expected_form_without_attr.join == @form_without_attr }
+    assert { expected_form == form }
   end
 
   def test_error_should_be_raised_when_undefined_tag_for_struct

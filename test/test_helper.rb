@@ -3,9 +3,12 @@
 require 'bundler/setup'
 Bundler.require
 
+require 'hexlet_code'
+require 'minitest/autorun'
+
 lib = File.expand_path('../lib', __dir__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
-require 'hexlet_code'
-
-require 'minitest/autorun'
+def load_fixture(filename)
+  File.read(File.dirname(__FILE__) + "/fixtures/#{filename}.txt")
+end
