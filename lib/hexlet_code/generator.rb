@@ -2,39 +2,38 @@
 
 module HexletCode
   class Generator
-    attr_reader :data, :attr
+    attr_reader :data, :attrs
 
-    DEF_ATTR = { action: '#', method: 'post' }.freeze
+    DEFAULT_ATTRS = { action: '#', method: 'post' }.freeze
 
-    def initialize(struct, attr = {}, &)
+    def initialize(struct, attrs = {})
       @struct = struct
-      @attr = DEF_ATTR.dup
-      @data = []
-      attr_setter(@attr, attr) if attr.any?
-      instance_eval(&)
+      @attrs = DEFAULT_ATTRS.dup
+      @data = String.new
+      attrs_setter(@attrs, attrs) if attrs.any?
     end
 
     def submit(value = 'Save')
-      @data.push("  #{input_form('', value, 'submit')}\n".gsub(' name="" ', ' '))
+      @data << "  #{input_form('', value, 'submit')}\n".gsub(' name="" ', ' ')
     end
 
-    def input(tag, options = {})
-      @struct.public_send(tag)
-      @data.push("  #{label_for(tag)}\n")
+    def input(tag_name, options = {})
+      tag_value = @struct.public_send(tag_name)
+      @data << "  #{label_for(tag_name)}\n"
 
-      case options[:as]
-      when :text
-        @data.push("  #{textarea_form(tag, @struct[tag], **options)}\n")
-      else
-        @data.push("  #{input_form(tag, @struct[tag], 'text', **options)}\n")
-      end
+      @data << case options[:as]
+               when :text
+                 "  #{textarea_form(tag_name, tag_value, **options)}\n"
+               else
+                 "  #{input_form(tag_name, tag_value, 'text', **options)}\n"
+               end
     end
 
     private
 
-    def attr_setter(instance, attr)
-      attr[:action] = attr.delete(:url)
-      attr.map { |k, v| instance[k] = v }
+    def attrs_setter(default_attrs, attrs)
+      default_attrs.merge!(attrs)
+      default_attrs[:action] = default_attrs.delete(:url)
     end
 
     def label_for(tag)
@@ -46,11 +45,10 @@ module HexletCode
     end
 
     def textarea_form(tag, value, options = {})
-      options[:rows] = '40' if options[:rows].nil?
-      options[:cols] = '20' if options[:cols].nil?
-      options.delete(:as)
+      attrs = { rows: '40', cols: '20' }.merge(options)
+      attrs.delete(:as)
 
-      HexletCode::Tag.build('textarea', **options, name: tag) { value }
+      HexletCode::Tag.build('textarea', **attrs, name: tag) { value }
     end
   end
 end
