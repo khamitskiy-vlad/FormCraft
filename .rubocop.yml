@@ -5,14 +5,11 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Naming/MethodName:
+Style/RedundantSelf:
   Enabled: false
 
-Style/SymbolProc:
-    Enabled: false
-
-Metrics/MethodLength:
-    Max: 15
+Metrics/AbcSize:
+  Enabled: false
 
 Gemspec/DevelopmentDependencies:
     Enabled: false
