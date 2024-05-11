@@ -8,6 +8,7 @@ class TestHexletCode < Minitest::Test
 
   def setup
     @user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+    @empty_user = User.new
   end
 
   def test_form_creation_for_user_with_attr
@@ -43,5 +44,51 @@ class TestHexletCode < Minitest::Test
       "undefined method `age' for #<struct TestHexletCode::User name=\"rob\", job=\"hexlet\", gender=\"m\">",
       error.message
     )
+  end
+
+  def test_form_creation_for_empty_user
+    expected_form = load_fixture('expected_for_empty_user')
+    form = HexletCode.form_for @empty_user do |f|
+      f.input :name
+    end
+
+    assert { expected_form == form }
+  end
+
+  def test_field_creation_with_empty_input
+    expected_form = load_fixture('expected_with_empty_input')
+    form = HexletCode.form_for(@user, &:input)
+
+    assert { expected_form == form }
+  end
+
+  def test_setting_labels_ability
+    expected_form = load_fixture('expected_with_setting_labels')
+    form = HexletCode.form_for @user do |f|
+      f.input :name, label: false
+      f.input :name
+    end
+
+    assert { expected_form == form }
+  end
+
+  def test_setting_input_type_ability
+    expected_form = load_fixture('expected_with_setting_types')
+    form = HexletCode.form_for @user do |f|
+      f.input :name, type: 'color'
+      f.input :name
+    end
+
+    assert { expected_form == form }
+  end
+
+  def test_submit_input_with_attributes
+    expected_form = load_fixture('expected_submit_input_with_attributes')
+    form = HexletCode.form_for @user do |f|
+      f.submit class: 'user-submit'
+      f.submit 'Wow', class: 'user-submit'
+    end
+
+    assert { expected_form == form }
   end
 end
