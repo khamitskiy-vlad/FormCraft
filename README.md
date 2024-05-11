@@ -27,7 +27,7 @@ User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new
 
 HexletCode.form_for user do |f|
-  f.input :name
+  f.input # get a first struct member
   f.submit
 end
 
@@ -38,31 +38,34 @@ end
 # </form>
 ```
 
-Option `as:` with `:text` will generate a `<textarea>` form. The default row and col values ​​are 40 and 20. But you can set them yourself. Let's look at the full usage of the generator:
+Option `as:` with `:text` will generate a `<textarea>` form. The default row and col values ​​are 40 and 20. But you can set them yourself, such as another options or attributes. Let's look at the full usage of the generator:
 
 ```ruby
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
 HexletCode.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |f|
-  f.input :job, as: :text
   f.input :job, as: :text, rows: 50, cols: 50
+  f.input :job, as: :text, label: false
   f.input :name, class: 'user-input'
+  f.input :gender, type: 'color', label: false
+  f.submit class: 'user-submit'
   f.submit 'Wow'
 end
 
 # <form action="/users" method="get" class="hexlet-code">
 #   <label for="job">Job</label>
-#   <textarea rows="40" cols="20" name="job">hexlet</textarea>
-#   <label for="job">Job</label>
 #   <textarea rows="50" cols="50" name="job">hexlet</textarea>
+#   <textarea rows="40" cols="20" name="job">hexlet</textarea>
 #   <label for="name">Name</label>
 #   <input name="name" type="text" value="rob" class="user-input">
+#   <input name="gender" type="color" value="m">
+#   <input type="submit" value="Save" class="user-submit">
 #   <input type="submit" value="Wow">
 # </form>
 ```
 
-If you try to specify a key that is not in the struct, you will receive an error:
+If you try to specify a key that is not in the struct members, you will receive an error:
 
 ```ruby
 HexletCode.form_for user do |f|
@@ -71,6 +74,13 @@ end
 
 # `public_send': undefined method `age' for #<struct User name="rob", job="hexlet", gender="m"> (NoMethodError)
 ```
+
+### Input options
+* **`as:` `:text`** - provides replacement of the `<input>` tag with `<textarea>`;
+
+* **`type:` `'foo'`** - provides a change of the input type, for example `type="color"` instead of default `"text"`;
+
+* **`label:` `false`** - provides that the label tag field is disabled for input or textarea tag fields.
 
 ## Development
 
