@@ -4,13 +4,14 @@ lib = File.expand_path('../lib', __dir__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
 require_relative 'hexlet_code/version'
+require_relative 'hexlet_code/hexlet_code'
 
 module HexletCode
-  autoload :Tag, 'hexlet_code/tag.rb'
-  autoload :Generator, 'hexlet_code/generator.rb'
-
-  def self.form_for(struct, attrs = {})
-    yield form = Generator.new(struct, attrs)
-    HexletCode::Tag.build('form', form.attrs) { form.data }
-  end
+  autoload :Collector, 'hexlet_code/collector/collector.rb'
+  autoload :Input, 'hexlet_code/collector/input.rb'
+  autoload :Submit, 'hexlet_code/collector/submit.rb'
+  autoload :Form, 'hexlet_code/collector/form.rb'
+  autoload :Renderer, 'hexlet_code/rendered_views/renderer.rb'
+  autoload :Tag, 'hexlet_code/rendered_views/html/tag.rb'
+  autoload :Html, 'hexlet_code/rendered_views/html/html.rb'
 end
