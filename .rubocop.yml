@@ -5,11 +5,5 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Style/RedundantSelf:
-  Enabled: false
-
-Metrics/AbcSize:
-  Enabled: false
-
 Gemspec/DevelopmentDependencies:
     Enabled: false
