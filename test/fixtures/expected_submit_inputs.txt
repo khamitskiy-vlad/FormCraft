@@ -1,0 +1,6 @@
+<form action="#" method="post">
+  <input type="submit" value="Save">
+  <input type="submit" value="Wow">
+  <input type="submit" value="{:class=>"user-submit"}">
+  <input type="submit" value="Wow" class="user-submit">
+</form>
