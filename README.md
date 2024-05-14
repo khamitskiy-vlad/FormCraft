@@ -20,14 +20,14 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 Сreate the necessary struct, class object and set attributes.
 
-For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the `.input()` method options. After call the `.submit()`. If you haven't set values for the struct keys, or haven't set destination `url:`, generator will add them by default:
+For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the argument of `.input()` method. After call the `.submit()`. If you haven't set values for the struct keys, or haven't set destination `url:`, generator will add them by default:
 
 ```ruby
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new
 
 HexletCode.form_for user do |f|
-  f.input # get a first struct member
+  f.input :name
   f.submit
 end
 
@@ -49,8 +49,7 @@ HexletCode.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |
   f.input :job, as: :text, label: false
   f.input :name, class: 'user-input'
   f.input :gender, type: 'color', label: false
-  f.submit class: 'user-submit'
-  f.submit 'Wow'
+  f.submit 'Wow', class: 'user-submit'
 end
 
 # <form action="/users" method="get" class="hexlet-code">
@@ -60,8 +59,7 @@ end
 #   <label for="name">Name</label>
 #   <input name="name" type="text" value="rob" class="user-input">
 #   <input name="gender" type="color" value="m">
-#   <input type="submit" value="Save" class="user-submit">
-#   <input type="submit" value="Wow">
+#   <input type="submit" value="Wow" class="user-submit">
 # </form>
 ```
 
