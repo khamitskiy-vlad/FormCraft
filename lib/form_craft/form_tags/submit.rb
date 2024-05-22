@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Submit
     DEFAULT_TAG = :input
     DEFAULT_SUBMIT_TYPE = :submit

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Form
     DEFAULT_ACTION = '#'
     DEFAULT_METHOD = 'post'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Collector
     attr_reader :collection
 

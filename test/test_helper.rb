@@ -3,7 +3,7 @@
 require 'bundler/setup'
 Bundler.require
 
-require 'hexlet_code'
+require 'form_craft'
 require 'minitest/autorun'
 
 lib = File.expand_path('../lib', __dir__)

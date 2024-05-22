@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Textarea
     DEFAULT_TEXTAREA_ATTRIBUTES = { rows: '40',
                                     cols: '20' }.freeze

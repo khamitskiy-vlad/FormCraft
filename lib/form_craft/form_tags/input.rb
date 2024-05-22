@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Input
     DEFAULT_INPUT_TYPE = 'text'
 

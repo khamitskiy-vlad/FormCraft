@@ -1,8 +1,10 @@
-# HexletCode
+# FormCraft
+
+<img src="https://i.ibb.co/DGtzMK2/Form-Craft.png" width="200">
+
 [![CI](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/ci.yml/badge.svg)](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/ci.yml) [![hexlet-check](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/hexlet-check.yml)
 
-
-**HexletCode** - DSL form generator for create light HTML forms.
+**FormCraft** — DSL form generator for create light HTML forms.
 
 This library takes care about tasks that usually require writing a lot of routine code, such as error handling. It is inspired by [Simple Form](https://github.com/heartcombo/simple_form) for Rails, but conceptually simpler.
 
@@ -10,14 +12,15 @@ This library takes care about tasks that usually require writing a lot of routin
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add hexlet_code --git 'https://github.com/khamitskiy-vlad/HexletCode.git'
+    $ bundle add form_craft --git 'https://github.com/khamitskiy-vlad/FormCraft.git'
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
     $ gem install specific_install 
-    $ gem specific_install -l 'https://github.com/khamitskiy-vlad/HexletCode.git'
+    $ gem specific_install -l 'https://github.com/khamitskiy-vlad/FormCraft.git'
 
 ## Usage
+
 Сreate the necessary struct, class object and set attributes.
 
 For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the argument of `.input()` method. After call the `.submit()`. If you haven't set values for the struct keys, or haven't set destination `url:`, generator will add them by default:
@@ -26,7 +29,7 @@ For example, you can call the `.form_for()` method for class instance variable w
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new
 
-HexletCode.form_for user do |f|
+FormCraft.form_for user do |f|
   f.input :name
   f.submit
 end
@@ -44,7 +47,7 @@ Option `as:` with `:text` will generate a `<textarea>` form. The default row and
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-HexletCode.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |f|
+FormCraft.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |f|
   f.input :job, as: :text, rows: 50, cols: 50
   f.input :job, as: :text, label: false
   f.input :name, class: 'user-input'
@@ -66,7 +69,7 @@ end
 If you try to specify a key that is not in the struct members, you will receive an error:
 
 ```ruby
-HexletCode.form_for user do |f|
+FormCraft.form_for user do |f|
   f.input :age
 end
 
@@ -74,6 +77,7 @@ end
 ```
 
 ### Input options
+
 * **`as:` `:text`** - provides replacement of the `<input>` tag with `<textarea>`;
 
 * **`type:` `'foo'`** - provides a change of the input type, for example `type="color"` instead of default `"text"`;
@@ -88,7 +92,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/khamitskiy-vlad/hexlet_code. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/khamitskiy-vlad/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/khamitskiy-vlad/form_craft. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/khamitskiy-vlad/form_craft/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -96,4 +100,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the HexletCode project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/khamitskiy-vlad/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the FormCraft project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/khamitskiy-vlad/form_craft/blob/main/CODE_OF_CONDUCT.md).

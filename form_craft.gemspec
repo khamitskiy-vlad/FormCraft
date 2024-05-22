@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'lib/hexlet_code/version'
+require_relative 'lib/form_craft/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'hexlet_code'
-  spec.version = HexletCode::VERSION
+  spec.name = 'form_craft'
+  spec.version = FormCraft::VERSION
   spec.authors = ['Khamitskiy Vladislav']
   spec.email = ['vladislaviktorovic@gmail.com']
 

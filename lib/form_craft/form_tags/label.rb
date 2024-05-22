@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Label
     DEFAULT_LABEL_TAG = :label
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   module Tag
     UNPAIRED = %i[area base br col embed hr img input link meta source].freeze
 

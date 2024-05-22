@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module HexletCode
+module FormCraft
   class Renderer
     class << self
       def to_html(collection)
@@ -14,14 +14,14 @@ module HexletCode
 
       def build_form(form, fields)
         tag = form[:tag].capitalize
-        HexletCode.const_get(tag).render(form, fields)
+        FormCraft.const_get(tag).render(form, fields)
       end
 
       def render_fields_from(inputs)
         inputs.map do |input|
           handled_input = options_handler(input)
           tag = handled_input[:tag].capitalize
-          HexletCode.const_get(tag).render(handled_input)
+          FormCraft.const_get(tag).render(handled_input)
         end.join
       end
 
