@@ -1,6 +1,6 @@
-<form action="/profile" method="get" class="hexlet-form">
+<form action="/profile" method="get" class="craft-form">
   <label for="job">Job</label>
-  <textarea rows="50" cols="50" name="job">hexlet</textarea>
+  <textarea rows="50" cols="50" name="job">craft</textarea>
   <label for="name">Name</label>
   <input name="name" type="text" value="rob" class="user-input">
   <input type="submit" value="Wow">

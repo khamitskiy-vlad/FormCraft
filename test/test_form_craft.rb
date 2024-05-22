@@ -7,13 +7,13 @@ class TestFormCraft < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
 
   def setup
-    @user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+    @user = User.new name: 'rob', job: 'craft', gender: 'm'
     @empty_user = User.new
   end
 
   def test_form_creation_for_user_with_attr
     expected_form = load_fixture('expected_form_with_attr')
-    form = FormCraft.form_for @user, url: '/profile', method: :get, class: 'hexlet-form' do |f|
+    form = FormCraft.form_for @user, url: '/profile', method: :get, class: 'craft-form' do |f|
       f.input :job, as: :text, rows: 50, cols: 50
       f.input :name, class: 'user-input'
       f.submit 'Wow'
@@ -41,7 +41,7 @@ class TestFormCraft < Minitest::Test
     end
 
     assert_equal(
-      "undefined method `age' for #<struct TestFormCraft::User name=\"rob\", job=\"hexlet\", gender=\"m\">",
+      "undefined method `age' for #<struct TestFormCraft::User name=\"rob\", job=\"craft\", gender=\"m\">",
       error.message
     )
   end
@@ -89,7 +89,7 @@ class TestFormCraft < Minitest::Test
 
   def test_form_seting_default_action
     expected_form = load_fixture('expected_default_action_setted')
-    form = FormCraft.form_for @user, class: 'hexlet-form'
+    form = FormCraft.form_for @user, class: 'craft-form'
 
     assert { expected_form == form }
   end
