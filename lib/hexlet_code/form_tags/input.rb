@@ -2,14 +2,16 @@
 
 module HexletCode
   class Input
+    DEFAULT_INPUT_TYPE = 'text'
+
     def self.render(input)
-      tag = input[:tag]
-      name = input[:name]
-      type = input[:type] || 'text'
-      value = input[:value]
-      label = input[:label]
-      attributes = input[:attributes]
-      "#{Label.render(name, label)}  #{Tag.build(tag, name:, type:, value:, **attributes)}\n"
+      label = Label.render(input[:name], input[:label])
+      input_tag = Tag.build(input[:tag],
+                            name: input[:name],
+                            type: input[:type] || DEFAULT_INPUT_TYPE,
+                            value: input[:value],
+                            **input[:attributes])
+      "#{label}  #{input_tag}\n"
     end
   end
 end

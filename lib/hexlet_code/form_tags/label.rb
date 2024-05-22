@@ -2,8 +2,12 @@
 
 module HexletCode
   class Label
+    DEFAULT_LABEL_TAG = :label
+
     def self.render(name, label)
-      "  #{Tag.build(:label, for: name) { name.capitalize }}\n" unless label == false
+      label_tag = Tag.build(DEFAULT_LABEL_TAG,
+                            for: name) { name.capitalize }
+      "  #{label_tag}\n" unless label == false
     end
   end
 end
