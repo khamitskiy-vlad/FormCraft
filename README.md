@@ -2,7 +2,7 @@
 
 <img src="https://i.ibb.co/DGtzMK2/Form-Craft.png" width="200">
 
-[![CI](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/ci.yml/badge.svg)](https://github.com/khamitskiy-vlad/rails-project-63/actions/workflows/ci.yml)
+[![CI](https://github.com/khamitskiy-vlad/FormCraft/actions/workflows/ci.yml/badge.svg)](https://github.com/khamitskiy-vlad/FormCraft/actions/workflows/ci.yml)
 
 **FormCraft** — DSL form generator for create light HTML forms.
 

@@ -10,13 +10,13 @@ Gem::Specification.new do |spec|
 
   spec.summary = 'Form generator'
   spec.description = 'Form generator is a DSL that makes it easy to generate forms.'
-  spec.homepage = 'https://github.com/khamitskiy-vlad/rails-project-63'
+  spec.homepage = 'https://github.com/khamitskiy-vlad/FormCraft'
   spec.license = 'MIT'
   spec.required_ruby_version = '3.2.2'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/khamitskiy-vlad/rails-project-63'
-  spec.metadata['changelog_uri'] = 'https://github.com/khamitskiy-vlad/rails-project-63'
+  spec.metadata['source_code_uri'] = 'https://github.com/khamitskiy-vlad/FormCraft'
+  spec.metadata['changelog_uri'] = 'https://github.com/khamitskiy-vlad/FormCraft'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files = Dir.chdir(__dir__) do
