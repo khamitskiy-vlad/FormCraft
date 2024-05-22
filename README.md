@@ -45,9 +45,9 @@ Option `as:` with `:text` will generate a `<textarea>` form. The default row and
 
 ```ruby
 User = Struct.new(:name, :job, :gender, keyword_init: true)
-user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+user = User.new name: 'rob', job: 'craft', gender: 'm'
 
-FormCraft.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |f|
+FormCraft.form_for user, url: '/users', method: :get, class: 'craft-code' do |f|
   f.input :job, as: :text, rows: 50, cols: 50
   f.input :job, as: :text, label: false
   f.input :name, class: 'user-input'
@@ -55,10 +55,10 @@ FormCraft.form_for user, url: '/users', method: :get, class: 'hexlet-code' do |f
   f.submit 'Wow', class: 'user-submit'
 end
 
-# <form action="/users" method="get" class="hexlet-code">
+# <form action="/users" method="get" class="craft-code">
 #   <label for="job">Job</label>
-#   <textarea rows="50" cols="50" name="job">hexlet</textarea>
-#   <textarea rows="40" cols="20" name="job">hexlet</textarea>
+#   <textarea rows="50" cols="50" name="job">craft</textarea>
+#   <textarea rows="40" cols="20" name="job">craft</textarea>
 #   <label for="name">Name</label>
 #   <input name="name" type="text" value="rob" class="user-input">
 #   <input name="gender" type="color" value="m">
@@ -73,7 +73,7 @@ FormCraft.form_for user do |f|
   f.input :age
 end
 
-# `public_send': undefined method `age' for #<struct User name="rob", job="hexlet", gender="m"> (NoMethodError)
+# `public_send': undefined method `age' for #<struct User name="rob", job="craft", gender="m"> (NoMethodError)
 ```
 
 ### Input options
