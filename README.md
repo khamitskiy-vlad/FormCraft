@@ -23,7 +23,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 Сreate the necessary struct, class object and set attributes.
 
-For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the argument of `.input()` method. After call the `.submit()`. If you haven't set values for the struct keys, or haven't set destination `url:`, generator will add them by default:
+For example, you can call the `.form_for()` method for class instance variable without url path. Then specify the keys from the struct in the argument of `.input()` method. After call the `.submit()`. If you haven't set values for the struct keys, or haven't set destination url `action:`, generator will add them by default:
 
 ```ruby
 User = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -47,7 +47,7 @@ Option `as:` with `:text` will generate a `<textarea>` form. The default row and
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 user = User.new name: 'rob', job: 'craft', gender: 'm'
 
-FormCraft.form_for user, url: '/users', method: :get, class: 'craft-code' do |f|
+FormCraft.form_for user, action: '/users', method: :get, class: 'craft-code' do |f|
   f.input :job, as: :text, rows: 50, cols: 50
   f.input :job, as: :text, label: false
   f.input :name, class: 'user-input'
