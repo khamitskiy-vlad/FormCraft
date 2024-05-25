@@ -2,12 +2,14 @@
 
 module FormCraft
   class Label
-    DEFAULT_LABEL_TAG = :label
+    LABEL_TAG = :label
 
     def self.render(name, label)
-      label_tag = Tag.build(DEFAULT_LABEL_TAG,
+      return unless label
+
+      label_tag = Tag.build(LABEL_TAG,
                             for: name) { name.capitalize }
-      "  #{label_tag}\n" unless label == false
+      "  #{label_tag}\n"
     end
   end
 end
