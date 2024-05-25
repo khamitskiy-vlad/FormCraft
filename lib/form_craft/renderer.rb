@@ -2,6 +2,8 @@
 
 module FormCraft
   class Renderer
+    TEXTAREA_TAG = :textarea
+
     class << self
       def to_html(collection)
         form = collection[0]
@@ -29,7 +31,7 @@ module FormCraft
         label = input[:attributes][:label]
         type = input[:attributes][:type]
         handled_input = { label:, type: }.merge(input).compact
-        handled_input[:tag] = :textarea if handled_input[:attributes][:as] == :text
+        handled_input[:tag] = TEXTAREA_TAG if handled_input[:attributes][:as] == :text
         handled_input[:attributes].reject! { |key| %i[as type label].include?(key) }
         handled_input
       end
