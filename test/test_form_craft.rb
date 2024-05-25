@@ -13,7 +13,7 @@ class TestFormCraft < Minitest::Test
 
   def test_form_creation_for_user_with_attr
     expected_form = load_fixture('expected_form_with_attr')
-    form = FormCraft.form_for @user, url: '/profile', method: :get, class: 'craft-form' do |f|
+    form = FormCraft.form_for @user, action: '/profile', method: :get, class: 'craft-form' do |f|
       f.input :job, as: :text, rows: 50, cols: 50
       f.input :name, class: 'user-input'
       f.submit 'Wow'
