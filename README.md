@@ -1,6 +1,6 @@
 # FormCraft
 
-<img src="https://i.ibb.co/DGtzMK2/Form-Craft.png" width="200">
+![Logo](https://i.ibb.co/K7JFT1K/Form-Craft-Pic.png)
 
 [![CI](https://github.com/khamitskiy-vlad/FormCraft/actions/workflows/ci.yml/badge.svg)](https://github.com/khamitskiy-vlad/FormCraft/actions/workflows/ci.yml)
 
